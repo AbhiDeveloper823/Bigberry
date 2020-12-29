@@ -4,10 +4,11 @@ const express = require('express'),
       cors = require('cors'),
       Message = require('./models/Message'),
       Product = require('./models/Product'),
+      path = require('path');
       app  = express();
       require('dotenv').config()
 
-mongoose.connect(`mongodb+srv://abhi:mongo@abhi@cluster0.ddjzu.mongodb.net/bigberry?retryWrites=true&w=majority`, {
+mongoose.connect(`mongodb+srv://abhi:${process.env.DB_PASS}@cluster0.ddjzu.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`, {
     useNewUrlParser:true,
     useCreateIndex:true,
     useFindAndModify:false,
@@ -24,6 +25,7 @@ app.use(bodyParser.json())
 
 
 //ROUTES
+
 app.get('/', (req, res)=>{
     res.status(200).send('WELCOME MASTER!!')
 })
