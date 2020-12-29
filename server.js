@@ -4,7 +4,6 @@ const express = require('express'),
       cors = require('cors'),
       Message = require('./models/Message'),
       Product = require('./models/Product'),
-      path = require('path');
       app  = express();
       require('dotenv').config()
 
@@ -19,7 +18,6 @@ mongoose.connect(`mongodb+srv://abhi:mongo@abhi@cluster0.ddjzu.mongodb.net/bigbe
     console.log('DATABASE NOT CONNECTED')
 })
 
-app.use(express.static(path.join(__dirname, 'build')))
 app.use(cors())
 app.use(bodyParser.urlencoded({extended:true}))
 app.use(bodyParser.json())
@@ -27,10 +25,6 @@ app.use(bodyParser.json())
 
 //ROUTES
 app.get('/', (req, res)=>{
-    res.sendFile(path.join(__dirname, 'build/index.html'))
-})
-
-app.get('/api', (req, res)=>{
     res.status(200).send('WELCOME MASTER!!')
 })
 
